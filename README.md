@@ -21,6 +21,7 @@ One-click deploy [nanobot](https://github.com/nano-bot/nanobot) on [Railway](htt
 3. Attach a volume mounted at `/data`
 4. Open your app URL — you'll be prompted for credentials (default username: `admin`)
 5. Configure at least one provider API key and hit Save
+6. Once setup is complete, remove the public endpoint from your Railway service — the web UI is only needed for initial configuration and nanobot operates entirely through its configured channels (Telegram, WhatsApp, etc.)
 
 ### Run Locally with Docker
 
