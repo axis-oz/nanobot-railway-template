@@ -4,7 +4,8 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Telegram Message
+      - name: Send Success Message
+        if: success()
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -13,4 +14,17 @@ jobs:
             🚀 **Nanobot Redeployed!**
             User: ${{ github.actor }}
             Commit: ${{ github.event.head_commit.message }}
-            Status: Successful
+            Status: ✅ Successful
+
+      - name: Send Failure Message
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🚨 **Redeployment Failed!**
+            User: ${{ github.actor }}
+            Commit: ${{ github.event.head_commit.message }}
+            Status: ❌ Failed
+            Check Logs: https://github.com/${{ github.repository }}/actions
